@@ -12,16 +12,14 @@ function RandomNumber(prop) {
   const mouting = () => {
     randomFunction();
   };
-  useEffect(mouting, []);
 
   useEffect(() => {
+    mouting();
     if (numberOfGuesing > 7) {
-      alert("bạn thua rồi");
+      alert("Bạn thua rồi");
       newGame();
     }
   }, [numberOfGuesing]);
-  // mouting, updating
-  // nêu [] => mouting gọi duy nhất 1 lần khi khởi tạo
   //  nếu [numberOfGuesing] => mouting sẽ gọi mỗi khi numberOfGuesing thay đổi
   const randomFunction = () => {
     console.log(Math.random());
@@ -34,13 +32,12 @@ function RandomNumber(prop) {
     console.log(event);
   };
   const guess = () => {
-    console.log("step 1", numberOfGuesing);
     setnumberOfGuesing(numberOfGuesing + 1); // bất đồng bộ
     if (inputValue === randomNumber) {
       setCorrect(true);
 
       newGame();
-      alert("đoán đúng rồi");
+      alert("Bạn đoán đúng rồi");
     } else {
       if (inputValue > randomNumber) {
         setmessage("Số bạn đoán lớn quá");
@@ -48,7 +45,6 @@ function RandomNumber(prop) {
       if (inputValue < randomNumber) {
         setmessage("Số bạn đoán nhỏ quá");
       }
-      // console.log("step 2", numberOfGuesing);
 
       setCorrect(false);
     }
@@ -67,9 +63,6 @@ function RandomNumber(prop) {
   };
   return (
     <div>
-      {/* Header */}
-      {/* key={value} */}
-      {/*props: truyền dữ liệu từ cha sang con  */}
       <Header randomNumberKey={randomNumber} correctKey={correct} />
       {/* Body */}
       <Body
@@ -84,6 +77,5 @@ function RandomNumber(prop) {
     </div>
   );
 }
-// import và export
-// lifecycle
+
 export default RandomNumber;
